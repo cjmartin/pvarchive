@@ -1,0 +1,12 @@
+PVArchive - Masters Project by Chris Martin
+
+This project is an online DVR, extending mythTV.
+
+The web client will be written in Ruby on Rails, the scripts 
+to interface with mythTV and encode/process the video files 
+will be written in Ruby.
+
+Chris doesn't really know jack about Ruby, so prepare for 
+initial suckage.
+
+Misc notes etc. can be found @ wiki.roundhere.net/pvarchive
