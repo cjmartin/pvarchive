@@ -24,7 +24,7 @@ def transcode_video(infile, outfile)
   ffmpeg = "/opt/local/bin/ffmpeg"
   ffmpeg_options = "-y -t 00:01:00 -threads 4 -croptop 6 -cropbottom 6 -cropleft 6 -cropright 6 -s 640x480 -aspect 640:480 -r 29.97 -vcodec libx264 -g 150 -qmin 25 -qmax 51 -b 1000k -maxrate 1450k -level 30 -loop 1 -sc_threshold 40 -refs 2 -keyint_min 40 -partp4x4 1 -rc_eq 'blurCplx^(1-qComp)' -deinterlace -async 50 -acodec libfaac -ar 48000 -ac 2 -ab 128k -f mp4"
   #ffmpeg command
-  ffmpeg_cmd = "nice -n " + nice_level + " " + ffmpeg + " -i " + infile + " " + ffmpeg_options + getpath(outfile) + "ss_" + getfile(outfile)
+  ffmpeg_cmd = "nice -n " + nice_level + " " + ffmpeg + " -i " + infile + " " + ffmpeg_options + " " + getpath(outfile) + "ss_" + getfile(outfile)
   #report
   puts "transcoding " + infile + " to " + outfile
   puts ffmpeg_cmd if DEBUG
