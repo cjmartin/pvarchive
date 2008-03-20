@@ -1,7 +1,9 @@
 DEBUG = true
 
 def check_usage
+  #check for the proper inputs
   unless ARGV.length == 2
+    #if not, display the usage instruction
     puts "Usage: convert.rb <infile> <outfile>"
     exit
   end
