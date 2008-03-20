@@ -26,7 +26,7 @@ def transcode_video(infile, outfile)
   #ffmpeg command
   ffmpeg_cmd = "nice -n " + nice_level + " " + ffmpeg + " -i " + infile + " " + ffmpeg_options + " " + getpath(outfile) + "ss_" + getfile(outfile)
   #report
-  puts "transcoding " + infile + " to " + outfile
+  puts "transcoding " + infile + " to " + getpath(outfile) + "ss_" + getfile(outfile)
   puts ffmpeg_cmd if DEBUG
   #execute ffmpeg_cmd
   system ffmpeg_cmd
@@ -36,7 +36,10 @@ def quickstart_video(outfile)
   #settings - put these in a config.yml file when you figure out how
   qtfaststart = "/Users/cjmartin/bin/qt-faststart"
   #qt-faststart command
-  qtfastatart_cmd = qtfaststart + outfile + outfile
+  qtfastatart_cmd = qtfaststart + getpath(outfile) + "ss_" + getfile(outfile) + " " + getpath(outfile) + "qs_" + getfile(outfile)
+  #report
+  puts "modifying for streaming " + getpath(outfile) + "ss_" + getfile(outfile) + " to " + getpath(outfile) + "qs_" + getfile(outfile)
+  puts qtfaststart_cmd if DEBUG
   #execute qtfaststart_cmd
   system qtfaststart_cmd
 end
@@ -46,6 +49,7 @@ if $0 == __FILE__
   infile        = ARGV[0]
   outfile       = ARGV[1]
   transcode_video(infile, outfile)
+  quickstart_video(outfile)
 end
 
 =begin
