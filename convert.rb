@@ -10,7 +10,8 @@ def check_usage
 end
 
 def getpath(file)
-  file.split(file.split('/').pop)
+  #I think this is probably a stupid way to do this...
+  file.split(file.split('/').pop)[0]
 end
 
 def getfile(file)
