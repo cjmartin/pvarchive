@@ -70,9 +70,12 @@ end
 
 def upload_video(outfile)
   #scp command
-  scp_command = CONFIG['scp'] + " " + outfile + " " + CONFIG['upload_user'] + '@' + CONFIG['upload_host'] + ":" + CONFIG['upload_path']
+  scp_cmd = CONFIG['scp'] + " " + outfile + " " + CONFIG['upload_user'] + '@' + CONFIG['upload_host'] + ":" + CONFIG['upload_path']
   #report
-  #puts "uploading"
+  puts "uploading " + outfile + " to PVArchive (" + CONFIG['upload_host'] + ")"
+  puts scp_cmd if DEBUG
+  #execute scp_cmd
+  system scp_cmd
 end
 
 if $0 == __FILE__
