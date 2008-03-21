@@ -1,6 +1,9 @@
 require 'rubygems'
 require 'active_record'
 require 'composite_primary_keys'
+require 'yaml'
+
+puts __FILE__
 
 DEBUG = true
 
