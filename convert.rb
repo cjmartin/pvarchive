@@ -66,7 +66,7 @@ if $0 == __FILE__
       :password => CONFIG['password']
   )
   
-  filedata = Recorded.find_by_basename(infile)
+  filedata = Recorded.find_by_basename(getfile(infile))
   p filedata.attributes
   
   transcode_video(infile, outfile)
