@@ -11,7 +11,6 @@ class Recorded < ActiveRecord::Base
 end
 
 def check_usage
-  puts CONFIG['ffmpeg']
   #check for the proper inputs
   unless ARGV.length == 2
     #if not, display the usage instruction
