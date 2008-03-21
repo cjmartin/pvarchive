@@ -48,7 +48,11 @@ def add_metadata(infile, outfile)
   p metadata.attributes if DEBUG
   #AtomicParsley command
   atomicparsley_cmd = CONFIG['atomicparsley'] + " " + getpath(outfile) + "ss_" + getfile(outfile) + " --genre \"" + metadata.category + "\" --stik \"TV Show\" --TVNetwork \"\" --TVShowName \"" + metadata.title + "\" --title \"" + metadata.subtitle + "\" --description \"" + metadata.description + "\""
+  #report
+  puts "adding metadata to " + getpath(outfile) + "ss_" + getfile(outfile) + ", saving as "
   puts atomicparsley_cmd if DEBUG
+  #execute atomicparsley_cmd
+  system atomicparsley_cmd
 end
   
 
@@ -56,7 +60,7 @@ def quickstart_video(outfile)
   #qt-faststart command
   qtfaststart_cmd = CONFIG['qtfaststart'] + " " + getpath(outfile) + "ss_" + getfile(outfile) + " " + getpath(outfile) + "qs_" + getfile(outfile)
   #report
-  puts "modifying for streaming " + getpath(outfile) + "ss_" + getfile(outfile) + " to " + getpath(outfile) + "qs_" + getfile(outfile)
+  puts "modifying " + getpath(outfile) + "ss_" + getfile(outfile) + " for streaming, saving as " + getpath(outfile) + "qs_" + getfile(outfile)
   puts qtfaststart_cmd if DEBUG
   #execute qtfaststart_cmd
   system qtfaststart_cmd
