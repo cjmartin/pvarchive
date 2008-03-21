@@ -56,8 +56,8 @@ def quickstart_video(outfile)
 end
 
 if $0 == __FILE__
-  check_usage
   CONFIG        = YAML.load_file("config.yml")
+  check_usage
   infile        = ARGV[0]
   outfile       = ARGV[1]
   transcode_video(infile, outfile)
