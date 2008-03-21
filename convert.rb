@@ -1,3 +1,6 @@
+#ToDo:
+#add a check to getpath to return "" if nil
+
 require 'rubygems'
 require 'active_record'
 require 'composite_primary_keys'
@@ -71,10 +74,9 @@ def upload_video(outfile)
 end
 
 if $0 == __FILE__
-  puts getpath(__FILE__)
   check_usage
   
-  CONFIG        = YAML.load_file("config.yml")
+  CONFIG        = YAML.load_file(getpath(__FILE__) + "config.yml")
   infile        = ARGV[0]
   outfile       = ARGV[1]
   
