@@ -39,10 +39,8 @@ def transcode_video(infile, outfile)
 end
 
 def quickstart_video(outfile)
-  #settings - put these in a config.yml file when you figure out how
-  qtfaststart = "/Users/cjmartin/bin/qt-faststart"
   #qt-faststart command
-  qtfaststart_cmd = qtfaststart + " " + getpath(outfile) + "ss_" + getfile(outfile) + " " + getpath(outfile) + "qs_" + getfile(outfile)
+  qtfaststart_cmd = CONFIG['qtfaststart'] + " " + getpath(outfile) + "ss_" + getfile(outfile) + " " + getpath(outfile) + "qs_" + getfile(outfile)
   #report
   puts "modifying for streaming " + getpath(outfile) + "ss_" + getfile(outfile) + " to " + getpath(outfile) + "qs_" + getfile(outfile)
   puts qtfaststart_cmd if DEBUG
