@@ -3,10 +3,6 @@ require 'active_record'
 require 'composite_primary_keys'
 require 'yaml'
 
-CONFIG        = YAML.load_file("config.yml")
-puts CONFIG['ffmpeg']
-puts __FILE__
-
 DEBUG = true
 
 class Recorded < ActiveRecord::Base
@@ -15,6 +11,7 @@ class Recorded < ActiveRecord::Base
 end
 
 def check_usage
+  puts CONFIG['ffmpeg']
   #check for the proper inputs
   unless ARGV.length == 2
     #if not, display the usage instruction
@@ -60,6 +57,7 @@ end
 
 if $0 == __FILE__
   check_usage
+  CONFIG        = YAML.load_file("config.yml")
   infile        = ARGV[0]
   outfile       = ARGV[1]
   transcode_video(infile, outfile)
