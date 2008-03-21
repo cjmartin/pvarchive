@@ -1,7 +1,13 @@
 require 'rubygems'
 require 'active_record'
+require 'composite_primary_keys'
 
 DEBUG = true
+
+class Recorded < ActiveRecord::Base
+  set_table_name "recorded"
+  set_primary_keys :chanid, :starttime
+end
 
 def check_usage
   #check for the proper inputs
