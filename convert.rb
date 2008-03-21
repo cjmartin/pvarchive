@@ -50,9 +50,22 @@ end
 
 if $0 == __FILE__
   check_usage
+  
   CONFIG        = YAML.load_file("config.yml")
   infile        = ARGV[0]
   outfile       = ARGV[1]
+  
+  ActiveRecord::Base.logger = Logger.new(STDOUT)
+  ActiveRecord::Base.colorize_logging = false
+
+  ActiveRecord::Base.establish_connection(
+      :adapter  => "mysql",
+      :host     => CONFIG['host'],
+      :database => CONFIG['database'],
+      :username => CONFIG['username'],
+      :password => CONFIG['password']
+  )
+  
   transcode_video(infile, outfile)
   quickstart_video(outfile)
 end
