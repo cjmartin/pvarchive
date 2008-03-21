@@ -47,9 +47,9 @@ def add_metadata(infile, outfile)
   metadata = getmeta(getfile(infile))
   p metadata.attributes if DEBUG
   #AtomicParsley command
-  atomicparsley_cmd = CONFIG['atomicparsley'] + " " + getpath(outfile) + "ss_" + getfile(outfile) + " --genre \"" + metadata.category + "\" --stik \"TV Show\" --TVNetwork \"\" --TVShowName \"" + metadata.title + "\" --title \"" + metadata.subtitle + "\" --description \"" + metadata.description + "\""
+  atomicparsley_cmd = CONFIG['atomicparsley'] + " " + getpath(outfile) + "ss_" + getfile(outfile) + " --genre \"" + metadata.category + "\" --stik \"TV Show\" --TVNetwork \"\" --TVShowName \"" + metadata.title + "\" --title \"" + metadata.subtitle + "\" --description \"" + metadata.description + "\" --overWrite"
   #report
-  puts "adding metadata to " + getpath(outfile) + "ss_" + getfile(outfile) + ", saving as "
+  puts "adding metadata to " + getpath(outfile) + "ss_" + getfile(outfile) + ", dangerously overwriting the file until Chris changes it "
   puts atomicparsley_cmd if DEBUG
   #execute atomicparsley_cmd
   system atomicparsley_cmd
