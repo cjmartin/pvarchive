@@ -45,20 +45,6 @@ def transcode_video(infile, outfile)
   system ffmpeg_cmd
 end
 
-def add_metadata(infile, outfile)
-  #get metadata
-  metadata = getmeta(getfile(infile))
-  p metadata.attributes if DEBUG
-  #AtomicParsley command
-  atomicparsley_cmd = CONFIG['atomicparsley'] + " " + getpath(outfile) + "qs_" + getfile(outfile) + " --genre \"" + metadata.category + "\" --stik \"TV Show\" --TVNetwork \"\" --TVShowName \"" + metadata.title + "\" --title \"" + metadata.subtitle + "\" --description \"" + metadata.description + "\" --overWrite"
-  #report
-  puts "adding metadata to " + getpath(outfile) + "qs_" + getfile(outfile) + ", dangerously overwriting the file until Chris changes it "
-  puts atomicparsley_cmd if DEBUG
-  #execute atomicparsley_cmd
-  system atomicparsley_cmd
-end
-  
-
 def quickstart_video(outfile)
   #qt-faststart command
   qtfaststart_cmd = CONFIG['qtfaststart'] + " " + getpath(outfile) + "ss_" + getfile(outfile) + " " + getpath(outfile) + "qs_" + getfile(outfile)
@@ -69,8 +55,24 @@ def quickstart_video(outfile)
   system qtfaststart_cmd
 end
 
+def add_metadata(infile, outfile)
+  #get metadata
+  metadata = getmeta(getfile(infile))
+  p metadata.attributes if DEBUG
+  #AtomicParsley command
+  atomicparsley_cmd = CONFIG['atomicparsley'] + " " + getpath(outfile) + "qs_" + getfile(outfile) + " --output " + outfile + " --genre \"" + metadata.category + "\" --stik \"TV Show\" --TVNetwork \"\" --TVShowName \"" + metadata.title + "\" --title \"" + metadata.subtitle + "\" --description \"" + metadata.description + "\""
+  #report
+  puts "adding metadata to " + getpath(outfile) + "qs_" + getfile(outfile) + ", saving as " + outfile
+  puts atomicparsley_cmd if DEBUG
+  #execute atomicparsley_cmd
+  system atomicparsley_cmd
+end
+
 def upload_video(outfile)
-  #
+  #scp command
+  scp_command = CONFIG['scp'] + " " + outfile + " " + CONFIG['upload_user'] + '@' + CONFIG['upload_host'] + ":" + CONFIG['upload_path']
+  #report
+  #puts "uploading"
 end
 
 if $0 == __FILE__

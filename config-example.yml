@@ -5,6 +5,13 @@ ffmpeg_options: -y -t 00:01:00 -threads 4 -croptop 6 -cropbottom 6 -cropleft 6 -
 qtfaststart:    '/Users/cjmartin/bin/qt-faststart'
 atomicparsley:  '/Users/cjmartin/bin/AtomicParsley'
 
+#upload settings (your mythtv user must have an authorized no passphrase key on the upload_host)
+#later this would be something like "PVArchive username/pass"
+scp:            '/usr/bin/scp'
+upload_user:    'you'
+upload_host:    'yourhugeonlinestoreage.com'
+upload_path:    '/where/you/want/to/save/the/vids/'
+
 #mythconverg database connection
 host:           'localhost'
 database:       'mythconverg'
