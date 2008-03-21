@@ -47,7 +47,8 @@ def add_metadata(infile, outfile)
   metadata = getmeta(getfile(infile))
   p metadata.attributes if DEBUG
   #AtomicParsley command
-  #atomicparsley_cmd = 
+  atomicparsley_cmd = CONFIG['atomicparsley'] + " " + getpath(outfile) + "ss_" + getfile(outfile) + " --genre \"" + metadata.category + "\" --stik \"TV Show\" --TVNetwork \"\" --TVShowName \"" + metadata.title + "\" --title \"" + metadata.subtitle + "\" --description \"" + metadata.description + "\""
+  puts atomicparsley_cmd if DEBUG
 end
   
 
