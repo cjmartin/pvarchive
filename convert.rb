@@ -66,7 +66,12 @@ def quickstart_video(outfile)
   system qtfaststart_cmd
 end
 
+def upload_video(outfile)
+  #
+end
+
 if $0 == __FILE__
+  puts getpath(__FILE__)
   check_usage
   
   CONFIG        = YAML.load_file("config.yml")
