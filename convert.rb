@@ -99,6 +99,7 @@ if $0 == __FILE__
   transcode_video(infile, outfile)
   quickstart_video(outfile)
   add_metadata(infile, outfile)
+  upload_video(outfile)
 end
 
 =begin
