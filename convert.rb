@@ -28,6 +28,10 @@ def getfile(file)
   file.split('/').pop
 end
 
+def getmeta(file)
+  Recorded.find_by_basename(file)
+end
+
 def transcode_video(infile, outfile)
   #ffmpeg command
   ffmpeg_cmd = "nice -n " + CONFIG['nice_level'] + " " + CONFIG['ffmpeg'] + " -i " + infile + " " + CONFIG['ffmpeg_options'] + " " + getpath(outfile) + "ss_" + getfile(outfile)
@@ -37,6 +41,15 @@ def transcode_video(infile, outfile)
   #execute ffmpeg_cmd
   system ffmpeg_cmd
 end
+
+def add_metadata(infile, outfile)
+  #get metadata
+  metadata = getmeta(getfile(infile))
+  p metadata.attributes if DEBUG
+  #AtomicParsley command
+  #atomicparsley_cmd = 
+end
+  
 
 def quickstart_video(outfile)
   #qt-faststart command
@@ -66,10 +79,8 @@ if $0 == __FILE__
       :password => CONFIG['password']
   )
   
-  filedata = Recorded.find_by_basename(getfile(infile))
-  p filedata.attributes
-  
   transcode_video(infile, outfile)
+  add_metadata(infile, outfile)
   quickstart_video(outfile)
 end
 
@@ -105,4 +116,14 @@ ffmpeg
 -ab 128k                            audio bitrate
 -f mp4                              force mp4 output, sometimes ffmpeg doesn't detect it based on the filename
 out.mp4                             outfile
+
+AtomicParsley:
+AtomicParsley infile 
+--genre "Travel" 
+--stik "TV Show" 
+--TVNetwork TRAV 
+--TVShowName "Michael Palin's New Europe" 
+--title "From the Rila Mountains to Cappodoccia" 
+--description "Michael crosses into Bulgaria where he treks up to the Rila Mountains to join the summer solstice celebrations."
+
 =end
