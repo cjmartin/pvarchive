@@ -1,3 +1,6 @@
+require 'rubygems'
+require 'active_record'
+
 DEBUG = true
 
 def check_usage
